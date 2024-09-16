@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    ".CodeMirror": [
+      {
+        "label": "Toggle autopush-notes",
+        "command": "autopush-notes:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Plugins",
+      "submenu": [
+        {
+          "label": "autopush-notes",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "autopush-notes:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
