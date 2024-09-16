@@ -11,23 +11,36 @@
   "repository": "https://github.com/dkp-consult/autopush-notes",
   "license": "MIT",
   "configSchema": {
+    "autoBackupEnabled": {
+      "title": "Enable autosaving",
+      "type": "boolean",
+      "default": true,
+      "description": "You can toogle this to enable or disable the autosaving feature."
+    },
+    "backupInterval": {
+      "title": "Autosave interval",
+      "type": "integer",
+      "default": 5,
+      "minimum": 1,
+      "description": "Autosave interval in minutes."
+    },
     "githubToken": {
       "title": "GitHub Token",
       "type": "string",
       "default": "",
-      "description": "Ton token personnel GitHub pour accéder à l'API"
+      "description": "GitHub personal access token"
     },
     "githubRepo": {
-      "title": "Nom du dépôt GitHub",
+      "title": "GitHub repository",
       "type": "string",
       "default": "TON_NOM_UTILISATEUR/inkdrop-github-backup",
-      "description": "Nom du dépôt GitHub où les notes seront sauvegardées"
+      "description": "GitHub repository name where notes will be saved"
     },
     "localExportPath": {
-      "title": "Chemin du dossier local d'export",
+      "title": "Local export path",
       "type": "string",
       "default": "~/Documents/InkdropNotes",
-      "description": "Chemin local pour l'exportation des fichiers .md"
+      "description": "Local path where .md files will be saved"
     }
   },
   "engines": {
