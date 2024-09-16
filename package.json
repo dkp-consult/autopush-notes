@@ -1,13 +1,39 @@
 {
   "name": "autopush-notes",
   "main": "./lib/autopush-notes",
-  "version": "0.0.0",
-  "description": "A short description of your package",
-  "keywords": [],
-  "repository": "https://github.com/inkdropapp/autopush-notes",
+  "version": "0.0.1",
+  "description": "An Inkdrop plugin to export and back up notes to GitHub",
+  "keywords": [
+    "inkdrop",
+    "backup",
+    "github"
+  ],
+  "repository": "https://github.com/dkp-consult/autopush-notes",
   "license": "MIT",
+  "configSchema": {
+    "githubToken": {
+      "title": "GitHub Token",
+      "type": "string",
+      "default": "",
+      "description": "Ton token personnel GitHub pour accéder à l'API"
+    },
+    "githubRepo": {
+      "title": "Nom du dépôt GitHub",
+      "type": "string",
+      "default": "TON_NOM_UTILISATEUR/inkdrop-github-backup",
+      "description": "Nom du dépôt GitHub où les notes seront sauvegardées"
+    },
+    "localExportPath": {
+      "title": "Chemin du dossier local d'export",
+      "type": "string",
+      "default": "~/Documents/InkdropNotes",
+      "description": "Chemin local pour l'exportation des fichiers .md"
+    }
+  },
   "engines": {
     "inkdrop": "^5.3.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
 }
