@@ -15,7 +15,7 @@
           "label": "autopush-notes",
           "submenu": [
             {
-              "label": "Toggle",
+              "label": "Enable / Disable",
               "command": "autopush-notes:toggle"
             },
             {

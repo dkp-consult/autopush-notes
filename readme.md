@@ -71,7 +71,7 @@ Une fois configuré, le plugin exportera automatiquement vos notes dans le dossi
 
 ### Sauvegarde automatique
 
-Le plugin effectue automatiquement une sauvegarde toutes les 5 minutes, ou lorsque vous activez manuellement le plugin.
+Le plugin effectue automatiquement une sauvegarde toutes les 15 minutes, ou lorsque vous activez manuellement le plugin.
 
 ### Commandes
 
