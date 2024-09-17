@@ -17,6 +17,14 @@
             {
               "label": "Toggle",
               "command": "autopush-notes:toggle"
+            },
+            {
+              "label": "Export Notes Locally",
+              "command": "autopush-notes:exportLocal"
+            },
+            {
+              "label": "Export and Push Notes to GitHub",
+              "command": "autopush-notes:exportAndPush"
             }
           ]
         }
