@@ -8,7 +8,10 @@
     "backup",
     "github"
   ],
-  "repository": "https://github.com/dkp-consult/autopush-notes",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/dkp-consult/autopush-notes"
+  },
   "license": "MIT",
   "configSchema": {
     "autoBackupEnabled": {
