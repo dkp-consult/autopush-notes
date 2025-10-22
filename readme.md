@@ -8,6 +8,7 @@ An Inkdrop plugin to export your notes locally in Markdown (.md) format and auto
 
 - Exports your Inkdrop notes as `.md` files.
 - Automatically backs up your notes to a GitHub repository.
+- **Automatically syncs note deletions** - when you delete a note in Inkdrop, it's also removed from your backup.
 - Easy configuration via Inkdrop's user interface (plugin preferences).
 
 ### Prerequisites
@@ -71,6 +72,10 @@ The plugin requires a **GitHub personal access token** to interact with the GitH
 
 Once configured, the plugin will automatically export your notes to the specified local folder and push them to GitHub at regular intervals. Files will be saved as Markdown files (`.md`).
 
+When you delete a note in Inkdrop, the plugin will automatically:
+1. Remove the corresponding `.md` file from your local export folder
+2. Sync the deletion to your GitHub repository
+
 #### Automatic Backup
 
 The plugin automatically performs a backup every 15 minutes, or when you manually activate the plugin. It is possible to modify this interval from the plugin preferences.
@@ -81,6 +86,16 @@ The plugin automatically performs a backup every 15 minutes, or when you manuall
 - Verify that the local export path is correct and writable.
 - Changing the interval between backups only takes effect after restarting the plugin.
 - After using the enable/disable toggle, there is no visual feedback other than console logs in Inkdrop.
+
+### Recent Updates
+
+- **Note Deletion Sync**: Deleted notes are now automatically removed from both local storage and GitHub.
+
+### Recent Updates
+
+- **v0.0.2**: Added automatic synchronization of note deletions to GitHub
+  - When you delete a note in Inkdrop, the corresponding `.md` file is automatically removed from your local folder and GitHub repository
+  - Real-time deletion tracking ensures your backups stay in sync with your current notes
 
 ### Upcoming Features
 
@@ -114,6 +129,7 @@ Un plugin Inkdrop pour exporter vos notes localement au format Markdown (.md) et
 
 - Exporte vos notes d'Inkdrop en fichiers `.md`.
 - Sauvegarde automatique de vos notes dans un dépôt GitHub.
+- **Synchronisation automatique des suppressions** - quand vous supprimez une note dans Inkdrop, elle est aussi retirée de votre sauvegarde.
 - Configuration facile via l'interface utilisateur d'Inkdrop (préférences du plugin).
 
 ### Prérequis
@@ -177,6 +193,10 @@ Le plugin nécessite un **token d'accès personnel GitHub** pour interagir avec 
 
 Une fois configuré, le plugin exportera automatiquement vos notes dans le dossier local spécifié et les enverra à GitHub à intervalles réguliers. Les fichiers seront sauvegardés sous forme de fichiers Markdown (`.md`).
 
+Lorsque vous supprimez une note dans Inkdrop, le plugin va automatiquement :
+1. Supprimer le fichier `.md` correspondant de votre dossier d'exportation local
+2. Synchroniser la suppression avec votre dépôt GitHub
+
 #### Sauvegarde automatique
 
 Le plugin effectue automatiquement une sauvegarde toutes les 15 minutes, ou lorsque vous activez manuellement le plugin. Il est possible de modifier ce délai depuis les préférences du plugin.
@@ -188,7 +208,9 @@ Le plugin effectue automatiquement une sauvegarde toutes les 15 minutes, ou lors
 - Le changement de délai entre deux sauvegardes ne se fait qu'au redémarrage du plugin.
 - Après utilisation du toggle enable / disable, il n'y a pas de retour visuel autre que des consoles logs dans Inkdrop.
 
-### Features à venir
+### Mises à jour récentes
+
+- **Synchronisation des suppressions de notes** : Les notes supprimées sont maintenant automatiquFeatures à venir
 
 - Optimiser le retour visuel de l'activation et de la désactivation du plugin.
 
