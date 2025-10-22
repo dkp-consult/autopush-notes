@@ -111,6 +111,10 @@ If you encounter any issues, feel free to [create an issue](https://github.com/d
 
 ### Contribution
 
+Thanks to [mauriciord](https://x.com/mauriciord) 
+
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white)](https://x.com/mauriciord) [![GitHub](https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white)](https://github.com/mauriciord)
+
 Contributions are welcome! If you want to improve this plugin, feel free to fork this project and submit a Pull Request.
 
 ### License
@@ -223,6 +227,10 @@ En cas de problème, vous pouvez [créer un issue](https://github.com/dkp-consul
 [![GitHub](https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white)](https://github.com/dkp-consult) [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white)](https://x.com/dkp_consult)
 
 ### Contribution
+
+Merci à [mauriciord](https://x.com/mauriciord)
+
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white)](https://x.com/mauriciord) [![GitHub](https://img.shields.io/badge/GitHub-100000?logo=github&logoColor=white)](https://github.com/mauriciord)
 
 Les contributions sont les bienvenues ! Si vous souhaitez améliorer ce plugin, n'hésitez pas à forker ce projet et soumettre une Pull Request.
 
