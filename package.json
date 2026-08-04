@@ -1,7 +1,7 @@
 {
   "name": "autopush-notes",
   "main": "./lib/autopush-notes",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An Inkdrop plugin to export and back up notes to GitHub",
   "keywords": [
     "inkdrop",
@@ -58,7 +58,7 @@
     }
   },
   "engines": {
-    "inkdrop": ">=6 <7"
+    "inkdrop": ">=5.3.1 <7"
   },
   "dependencies": {
     "node-fetch": "^2.7.0"
