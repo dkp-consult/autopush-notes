@@ -60,7 +60,7 @@ When a user deletes a note in Inkdrop, the plugin now automatically:
 - Added version 0.0.2 entry documenting the new feature
 - Listed specific improvements and additions
 
-#### `readme.md`
+#### `README.md`
 - Updated Features section to highlight automatic deletion sync
 - Added "Recent Updates" section with v0.0.2 details
 - Maintained both English and French documentation sections
@@ -164,7 +164,7 @@ The implementation includes multiple safety checks:
 
 ### Version Information
 - Feature version: 0.0.2
-- Requires: Inkdrop ^5.3.1
+- Requires: Inkdrop >=6 <7
 - Dependencies: No new dependencies added
 
 ### Installation

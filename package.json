@@ -8,9 +8,20 @@
     "backup",
     "github"
   ],
+  "files": [
+    "CHANGELOG.md",
+    "DELETION_SYNC_GUIDE.md",
+    "IMPLEMENTATION_SUMMARY.md",
+    "README.md",
+    "TESTING.md",
+    "keymaps",
+    "lib",
+    "menus",
+    "styles"
+  ],
   "repository": {
-    "type": "github",
-    "url": "https://github.com/dkp-consult/autopush-notes"
+    "type": "git",
+    "url": "https://github.com/dkp-consult/autopush-notes.git"
   },
   "license": "MIT",
   "configSchema": {
@@ -47,7 +58,7 @@
     }
   },
   "engines": {
-    "inkdrop": "^5.3.1"
+    "inkdrop": ">=6 <7"
   },
   "dependencies": {
     "node-fetch": "^2.7.0"
