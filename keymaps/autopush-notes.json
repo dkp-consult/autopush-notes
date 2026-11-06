@@ -1,7 +1,0 @@
-{
-  "body": {
-    "ctrl-alt-e": "autopush-notes:exportLocal",
-    "ctrl-alt-p": "autopush-notes:exportAndPush",
-    "ctrl-alt-t": "autopush-notes:toggle"
-  }
-}
