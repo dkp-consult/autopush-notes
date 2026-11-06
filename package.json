@@ -1,17 +1,17 @@
 {
-  "name": "autopush-notes",
-  "main": "./lib/autopush-notes",
-  "version": "0.0.4",
-  "description": "An Inkdrop plugin to export and back up notes to GitHub",
+  "name": "inkdrop-git-sync",
+  "main": "./lib/inkdrop-git-sync",
+  "version": "0.1.0",
+  "description": "Bidirectional synchronization between Inkdrop notes and a Git repository",
   "keywords": [
     "inkdrop",
-    "backup",
+    "sync",
     "github"
   ],
   "files": [
     "CHANGELOG.md",
-    "DELETION_SYNC_GUIDE.md",
-    "IMPLEMENTATION_SUMMARY.md",
+    "AGENTS_GIT_SYNC.md",
+    "MIGRATION.md",
     "README.md",
     "TESTING.md",
     "keymaps",
@@ -24,37 +24,69 @@
     "url": "https://github.com/dkp-consult/autopush-notes.git"
   },
   "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check lib/inkdrop-git-sync.js && node --check lib/sync-engine.js && node --check lib/git-service.js"
+  },
   "configSchema": {
-    "autoBackupEnabled": {
-      "title": "Enable autosaving",
+    "enabled": {
+      "title": "Enable scheduled synchronization",
       "type": "boolean",
-      "default": true,
-      "description": "You can toogle this to enable or disable the autosaving feature."
+      "default": false,
+      "description": "Enable only after reviewing the migration preview and using a dedicated sync folder."
     },
-    "backupInterval": {
-      "title": "Autosave interval",
+    "mode": {
+      "title": "Operating mode",
+      "type": "string",
+      "default": "export",
+      "enum": ["export", "sync"],
+      "description": "Existing installations stay in export mode until bidirectional sync is explicitly selected."
+    },
+    "interval": {
+      "title": "Sync interval",
       "type": "integer",
       "default": 5,
       "minimum": 1,
-      "description": "Autosave interval in minutes."
+      "description": "Synchronization interval in minutes."
     },
-    "githubToken": {
+    "token": {
       "title": "GitHub Token",
       "type": "string",
       "default": "",
-      "description": "GitHub personal access token"
+      "description": "GitHub token used through Git credential prompting; it is never stored in the remote URL."
     },
-    "githubRepo": {
+    "repository": {
       "title": "GitHub repository",
       "type": "string",
-      "default": "TON_NOM_UTILISATEUR/inkdrop-github-backup",
-      "description": "GitHub repository name where notes will be saved"
+      "default": "",
+      "description": "Private knowledge repository in owner/repository format."
     },
-    "localExportPath": {
-      "title": "Local export path",
+    "branch": {
+      "title": "Git branch",
       "type": "string",
-      "default": "~/Documents/InkdropNotes",
-      "description": "Local path where .md files will be saved"
+      "default": "main"
+    },
+    "syncFolder": {
+      "title": "Dedicated sync folder",
+      "type": "string",
+      "default": "~/InkdropGitSync",
+      "description": "Use a new dedicated folder. Managed notes are stored under notes/."
+    },
+    "includedBooks": {
+      "title": "Included notebooks",
+      "type": "string",
+      "default": "",
+      "description": "Optional comma-separated notebook IDs. Empty includes all notebooks."
+    },
+    "migrationVersion": {
+      "type": "integer",
+      "default": 0,
+      "visible": false
+    },
+    "legacyExportFolder": {
+      "type": "string",
+      "default": "",
+      "visible": false
     }
   },
   "engines": {

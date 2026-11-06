@@ -1,0 +1,7 @@
+{
+  "body": {
+    "ctrl-alt-s": "inkdrop-git-sync:syncNow",
+    "ctrl-alt-v": "inkdrop-git-sync:preview",
+    "ctrl-alt-c": "inkdrop-git-sync:openConflicts"
+  }
+}
