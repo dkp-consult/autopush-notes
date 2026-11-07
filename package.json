@@ -26,34 +26,37 @@
   "license": "MIT",
   "scripts": {
     "test": "node --test",
-    "check": "node --check lib/inkdrop-git-sync.js && node --check lib/sync-engine.js && node --check lib/git-service.js"
+    "check": "node --check lib/inkdrop-git-sync.js && node --check lib/sync-engine.js && node --check lib/git-service.js && node --check lib/inkdrop-adapter.js"
   },
   "configSchema": {
     "enabled": {
       "title": "Enable scheduled synchronization",
       "type": "boolean",
       "default": false,
-      "description": "Enable only after reviewing the migration preview and using a dedicated sync folder."
+      "description": "Run a cycle on the interval below. Enable only after a successful preview and one manual cycle."
     },
     "mode": {
       "title": "Operating mode",
       "type": "string",
       "default": "export",
-      "enum": ["export", "sync"],
-      "description": "Existing installations stay in export mode until bidirectional sync is explicitly selected."
+      "enum": [
+        "export",
+        "sync"
+      ],
+      "description": "export: one-way, Inkdrop to Git (existing installations). sync: two-way; requires a new dedicated folder."
     },
     "interval": {
       "title": "Sync interval",
       "type": "integer",
       "default": 5,
       "minimum": 1,
-      "description": "Synchronization interval in minutes."
+      "description": "Synchronization interval in minutes. Changes apply immediately."
     },
     "token": {
       "title": "GitHub Token",
       "type": "string",
       "default": "",
-      "description": "GitHub token used through Git credential prompting; it is never stored in the remote URL."
+      "description": "GitHub token with access to the repository. Passed to Git through GIT_ASKPASS; never written to the remote URL or the logs."
     },
     "repository": {
       "title": "GitHub repository",
@@ -70,13 +73,13 @@
       "title": "Dedicated sync folder",
       "type": "string",
       "default": "~/InkdropGitSync",
-      "description": "Use a new dedicated folder. Managed notes are stored under notes/."
+      "description": "A new dedicated folder for the Git checkout. Managed notes are stored under notes/."
     },
     "includedBooks": {
       "title": "Included notebooks",
       "type": "string",
       "default": "",
-      "description": "Optional comma-separated notebook IDs. Empty includes all notebooks."
+      "description": "Optional comma-separated notebook names or IDs; sub-notebooks are included. Empty includes all notebooks."
     },
     "migrationVersion": {
       "type": "integer",
@@ -90,6 +93,6 @@
     }
   },
   "engines": {
-    "inkdrop": ">=5.3.1 <7"
+    "inkdrop": ">=6.0.0 <7"
   }
 }
