@@ -1,5 +1,7 @@
 # Migration from autopush-notes
 
+autopush-notes was renamed Inkdrop Git Sync when it became a two-way sync; see [Why the new name](README.md#why-the-new-name). The GitHub repository moved to `dkp-consult/inkdrop-git-sync` (the old URL redirects).
+
 The package is now published as `inkdrop-git-sync`. Inkdrop has no documented way to transfer an installed package to a new name, so the transition is explicit. `autopush-notes` stays in the registry and is not removed automatically.
 
 ## What happens on first activation
@@ -20,3 +22,12 @@ The package is now published as `inkdrop-git-sync`. Inkdrop has no documented wa
 3. Choose a **new, empty** sync folder. Sync mode refuses the legacy export folder.
 4. Review the settings, set the mode to `sync`, and run **Preview Without Writing**. Notes already exported by `export` mode are recognised as matches, not as new notes.
 5. Resolve anything listed as a conflict, then run one **Synchronize Now** before enabling the schedule.
+
+## Removing autopush-notes
+
+Once Inkdrop Git Sync has started once (its settings are then imported), remove the old package:
+
+1. Quit Inkdrop.
+2. Run `ipm uninstall autopush-notes`.
+3. Inkdrop keeps the old package's settings in `config.json`, including the GitHub token in clear text. Remove the `autopush-notes` section from `~/Library/Application Support/inkdrop/config.json` (macOS), or clear the token in the plugin settings before uninstalling.
+4. Restart Inkdrop. The old export folder and the backup repository it pushed to are not touched: keep or delete them yourself.
