@@ -2,7 +2,15 @@
 
 Inkdrop Git Sync keeps Inkdrop notes and a private Git repository in step while Inkdrop is running. People and agents can work in a clone of the repository while the Mac is off; their committed changes reach Inkdrop on the next active cycle. Inkdrop's own cloud sync is unaffected.
 
-The package name is `inkdrop-git-sync`. The GitHub repository stays `dkp-consult/autopush-notes` to keep its history. It replaces the `autopush-notes` package; see [MIGRATION.md](MIGRATION.md).
+## Why the new name
+
+This plugin used to be called **autopush-notes**. That name described what it did then: export notes and push them to GitHub, one way, as a backup. It now keeps Inkdrop and a Git repository in step **in both directions**, so changes made in Git (by you or by an agent) come back into Inkdrop. "autopush" no longer described it, so it became **Inkdrop Git Sync**:
+
+- package: `inkdrop-git-sync` (replaces `autopush-notes`, which is no longer developed);
+- repository: [`dkp-consult/inkdrop-git-sync`](https://github.com/dkp-consult/inkdrop-git-sync), renamed from `dkp-consult/autopush-notes` with its full history (GitHub redirects the old URL);
+- commands: `inkdrop-git-sync:*` (the old `autopush-notes:*` commands remain as aliases).
+
+Coming from autopush-notes? Your settings are imported automatically; see [MIGRATION.md](MIGRATION.md).
 
 ## How it works
 
@@ -25,7 +33,7 @@ Out of scope for now: attachments and images, rewriting `inkdrop://` links, auto
 
 ## Setup
 
-1. Disable the `autopush-notes` package if it is installed.
+1. If `autopush-notes` is installed, uninstall it once its settings have been imported (see [MIGRATION.md](MIGRATION.md)).
 2. In **Preferences → Plugins → Inkdrop Git Sync**, set:
    - the private repository (`owner/repository`), branch and GitHub token;
    - a **new, dedicated** sync folder (default `~/InkdropGitSync`);
