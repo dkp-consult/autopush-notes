@@ -1,7 +1,7 @@
 const assert = require("node:assert/strict");
 const test = require("node:test");
 
-const { InkdropAdapter, allDocuments, taskCounts } = require("../lib/inkdrop-adapter");
+const { InkdropAdapter, allDocuments, localDatabase, taskCounts } = require("../lib/inkdrop-adapter");
 const { importedNoteId } = require("../lib/sync-engine");
 
 const { fakeDb } = require("./support/fake-inkdrop");
@@ -101,4 +101,29 @@ test("notebook scope accepts names or IDs and includes sub-notebooks", async () 
 
 test("counts Markdown tasks", () => {
   assert.deepEqual(taskCounts("- [ ] a\n* [x] b\n  - [X] c\ntext [ ]"), { numOfTasks: 3, numOfCheckedTasks: 2 });
+});
+
+test("reads Inkdrop 6 pages, whose documents sit in rows[].doc", async () => {
+  const source = Array.from({ length: 150 }, (_, index) => ({ _id: `note:${index}` }));
+  const result = await allDocuments({
+    async all({ limit, skip }) {
+      return { totalRows: source.length, cursor: null, rows: source.slice(skip, skip + limit).map(doc => ({ doc })) };
+    },
+  });
+  assert.equal(result.length, 150);
+  assert.equal(result[149]._id, "note:149");
+});
+
+test("finds the local database on Inkdrop 6 and on Inkdrop 5", () => {
+  const db = {};
+  assert.equal(localDatabase({ localDB: db }), db);
+  assert.equal(localDatabase({ main: { dataStore: { getLocalDB: () => db } } }), db);
+  assert.throws(() => localDatabase({}), /not available/);
+});
+
+test("a change from Git is dated now, so it surfaces in Date Updated", async () => {
+  const db = fakeDb();
+  const adapter = new InkdropAdapter(db, options);
+  await adapter.updateNote("note:a", { title: "A", body: "edited by the agent", book_path: ["Work", "Projects"], tags: [], status: "active", updated_at: "2020-01-01T00:00:00.000Z" }, "1-a");
+  assert.equal(db.notes.store.get("note:a").updatedAt, 1800000000000);
 });

@@ -34,9 +34,16 @@ function host({ config = {}, db = fakeDb(), activePackages = [] } = {}) {
       },
     },
     commands: { add: (_target, commands) => { global.inkdrop.registered = commands; return { dispose: () => disposed.push("commands") }; } },
-    notifications: { add: notification => notifications.push(notification) },
+    // Same methods as Inkdrop 6.3.0's NotificationManager.
+    notifications: Object.fromEntries(["info", "warning", "error"].map(type => [
+      `add${type[0].toUpperCase()}${type.slice(1)}`,
+      (message, options) => {
+        if (typeof message !== "string") throw new Error("Notification must be created with string message");
+        notifications.push({ type, message, ...options });
+      },
+    ])),
     packages: { isPackageActive: name => activePackages.includes(name) },
-    main: { dataStore: { getLocalDB: () => db } },
+    localDB: db,
   };
   return { values, notifications, disposed, db };
 }

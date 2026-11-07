@@ -29,7 +29,10 @@ function collection(docs, validate) {
     store,
     async all({ limit = 20, skip = 0 } = {}) {
       const values = [...store.values()];
-      return { docs: values.slice(skip, skip + limit), totalRows: values.length, limit, skip };
+      // Shape returned by Inkdrop 6.3.0 (checked against the running app).
+      const rows = values.slice(skip, skip + limit).map(doc => ({ doc }));
+      const cursor = skip + rows.length < values.length ? { index: "notes", limit, skip: skip + rows.length } : null;
+      return { query: { limit, skip, index: "notes" }, totalRows: values.length, cursor, includeDocs: true, rows };
     },
     async get(id) {
       if (!store.has(id)) { const error = new Error("missing"); error.status = 404; throw error; }
