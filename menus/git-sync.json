@@ -4,31 +4,31 @@
       "label": "Plugins",
       "submenu": [
         {
-          "label": "Inkdrop Git Sync",
+          "label": "Git Sync",
           "submenu": [
             {
               "label": "Synchronize Now",
-              "command": "inkdrop-git-sync:syncNow"
+              "command": "git-sync:syncNow"
             },
             {
               "label": "Preview Without Writing",
-              "command": "inkdrop-git-sync:preview"
+              "command": "git-sync:preview"
             },
             {
               "label": "Show Status",
-              "command": "inkdrop-git-sync:status"
+              "command": "git-sync:status"
             },
             {
               "label": "Open Conflicts",
-              "command": "inkdrop-git-sync:openConflicts"
+              "command": "git-sync:openConflicts"
             },
             {
               "label": "Open Sync Folder",
-              "command": "inkdrop-git-sync:openFolder"
+              "command": "git-sync:openFolder"
             },
             {
               "label": "Enable / Disable Schedule",
-              "command": "inkdrop-git-sync:toggle"
+              "command": "git-sync:toggle"
             }
           ]
         }

@@ -15,7 +15,7 @@ Inkdrop can run a second, local-only instance that never touches your account or
 ```sh
 DIR=$(mktemp -d)
 mkdir -p "$DIR/userdata/packages"
-ln -s "$PWD" "$DIR/userdata/packages/inkdrop-git-sync"
+ln -s "$PWD" "$DIR/userdata/packages/git-sync"
 INKDROP_TEST_MODE=1 INKDROP_USER_DATA_PATH="$DIR/userdata" INKDROP_HOME="$DIR/home" \
   /Applications/Inkdrop.app/Contents/MacOS/Inkdrop --remote-debugging-port=9333
 ```

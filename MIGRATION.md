@@ -1,15 +1,15 @@
 # Migration from autopush-notes
 
-autopush-notes was renamed Inkdrop Git Sync when it became a two-way sync; see [Why the new name](README.md#why-the-new-name). The GitHub repository moved to `dkp-consult/inkdrop-git-sync` (the old URL redirects).
+autopush-notes was renamed Git Sync (package `git-sync`) when it became a two-way sync; see [Why the new name](README.md#why-the-new-name). The GitHub repository moved to `dkp-consult/git-sync` (the old URL redirects).
 
-The package is now published as `inkdrop-git-sync`. Inkdrop has no documented way to transfer an installed package to a new name, so the transition is explicit. `autopush-notes` stays in the registry and is not removed automatically.
+The package is now published as `git-sync`. Inkdrop has no documented way to transfer an installed package to a new name, so the transition is explicit. `autopush-notes` stays in the registry and is not removed automatically.
 
 ## What happens on first activation
 
 - The old interval, repository, token and export folder are copied into the new settings, once. The token is never displayed or logged.
 - Mode is set to `export` and scheduling is turned off, whatever the old setting was.
 - If autopush-notes 0.0.4 or earlier wrote your backup into a folder literally named `~` (it never expanded `~`), a notification gives its location. It is never moved or deleted. Its `.git/config` may hold your GitHub token in clear text: check the folder, then delete it yourself.
-- Inkdrop Git Sync refuses to run while `autopush-notes` is active, so two plugins never write to one repository. The legacy commands stay silent in that case.
+- Git Sync refuses to run while `autopush-notes` is active, so two plugins never write to one repository. The legacy commands stay silent in that case.
 
 ## Keeping the one-way export
 
@@ -25,7 +25,7 @@ The package is now published as `inkdrop-git-sync`. Inkdrop has no documented wa
 
 ## Removing autopush-notes
 
-Once Inkdrop Git Sync has started once (its settings are then imported), remove the old package:
+Once Git Sync has started once (its settings are then imported), remove the old package:
 
 1. Quit Inkdrop.
 2. Run `ipm uninstall autopush-notes`.

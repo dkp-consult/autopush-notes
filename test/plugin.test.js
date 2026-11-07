@@ -49,9 +49,9 @@ function host({ config = {}, db = fakeDb(), activePackages = [] } = {}) {
 }
 
 function freshPlugin() {
-  delete require.cache[require.resolve("../lib/inkdrop-git-sync")];
+  delete require.cache[require.resolve("../lib/git-sync")];
   delete global.__inkdropGitSyncBridge;
-  return require("../lib/inkdrop-git-sync");
+  return require("../lib/git-sync");
 }
 
 async function remote() {
@@ -80,10 +80,10 @@ async function remote() {
 }
 
 const settings = (folder, extra = {}) => ({
-  "inkdrop-git-sync.migrationVersion": 1,
-  "inkdrop-git-sync.repository": "owner/notes",
-  "inkdrop-git-sync.branch": "main",
-  "inkdrop-git-sync.syncFolder": folder,
+  "git-sync.migrationVersion": 1,
+  "git-sync.repository": "owner/notes",
+  "git-sync.branch": "main",
+  "git-sync.syncFolder": folder,
   ...extra,
 });
 
@@ -97,11 +97,11 @@ test("migration copies legacy preferences once, keeps export mode and scheduling
   } });
   const plugin = freshPlugin();
   plugin.migratePreferences();
-  assert.equal(h.values.get("inkdrop-git-sync.mode"), "export");
-  assert.equal(h.values.get("inkdrop-git-sync.enabled"), false);
-  assert.equal(h.values.get("inkdrop-git-sync.interval"), 15);
-  assert.equal(h.values.get("inkdrop-git-sync.repository"), "owner/notes");
-  assert.equal(h.values.get("inkdrop-git-sync.legacyExportFolder"), "/tmp/old-export");
+  assert.equal(h.values.get("git-sync.mode"), "export");
+  assert.equal(h.values.get("git-sync.enabled"), false);
+  assert.equal(h.values.get("git-sync.interval"), 15);
+  assert.equal(h.values.get("git-sync.repository"), "owner/notes");
+  assert.equal(h.values.get("git-sync.legacyExportFolder"), "/tmp/old-export");
   assert.equal(h.notifications.some(n => n.message.includes("secret")), false);
   const before = [...h.values.entries()];
   plugin.migratePreferences();
@@ -110,7 +110,7 @@ test("migration copies legacy preferences once, keeps export mode and scheduling
 
 test("a fresh install works with default settings in export mode", async () => {
   const r = await remote();
-  const h = host({ config: settings(r.folder("sync"), { "inkdrop-git-sync.mode": "export" }) });
+  const h = host({ config: settings(r.folder("sync"), { "git-sync.mode": "export" }) });
   const plugin = freshPlugin();
   try {
     const status = await plugin.runCycle(false);
@@ -123,7 +123,7 @@ test("a fresh install works with default settings in export mode", async () => {
 
 test("a full sync cycle imports an agent note Inkdrop accepts, then goes quiet", async () => {
   const r = await remote();
-  const h = host({ config: settings(r.folder("sync"), { "inkdrop-git-sync.mode": "sync" }) });
+  const h = host({ config: settings(r.folder("sync"), { "git-sync.mode": "sync" }) });
   const plugin = freshPlugin();
   const syncId = "11111111-1111-4111-8111-111111111111";
   try {
@@ -145,7 +145,7 @@ test("a full sync cycle imports an agent note Inkdrop accepts, then goes quiet",
 
 test("a push rejected because an agent pushed meanwhile is merged and retried", async () => {
   const r = await remote();
-  host({ config: settings(r.folder("sync"), { "inkdrop-git-sync.mode": "sync" }) });
+  host({ config: settings(r.folder("sync"), { "git-sync.mode": "sync" }) });
   const plugin = freshPlugin();
   const original = GitService.prototype.commitAndPush;
   let raced = false;
@@ -165,7 +165,7 @@ test("a push rejected because an agent pushed meanwhile is merged and retried", 
 
 test("preview reports the remote's notes without writing anything", async () => {
   const r = await remote();
-  const h = host({ config: settings(r.folder("sync"), { "inkdrop-git-sync.mode": "sync" }) });
+  const h = host({ config: settings(r.folder("sync"), { "git-sync.mode": "sync" }) });
   const plugin = freshPlugin();
   const syncId = "11111111-1111-4111-8111-111111111111";
   try {
@@ -189,7 +189,7 @@ test("refuses to run while autopush-notes is active", async () => {
 
 test("sync mode refuses the legacy export folder", async () => {
   const r = await remote();
-  host({ config: settings(r.folder("legacy"), { "inkdrop-git-sync.mode": "sync", "inkdrop-git-sync.legacyExportFolder": r.folder("legacy") }) });
+  host({ config: settings(r.folder("legacy"), { "git-sync.mode": "sync", "git-sync.legacyExportFolder": r.folder("legacy") }) });
   const plugin = freshPlugin();
   try {
     await assert.rejects(plugin.runCycle(false), /new dedicated folder/);
@@ -197,7 +197,7 @@ test("sync mode refuses the legacy export folder", async () => {
 });
 
 test("scheduling follows settings live, with a single timer, and deactivation releases everything", () => {
-  const h = host({ config: { "inkdrop-git-sync.migrationVersion": 1, "inkdrop-git-sync.enabled": true, "inkdrop-git-sync.interval": 5 } });
+  const h = host({ config: { "git-sync.migrationVersion": 1, "git-sync.enabled": true, "git-sync.interval": 5 } });
   const plugin = freshPlugin();
   const timers = [];
   const realSet = global.setInterval;
@@ -207,7 +207,7 @@ test("scheduling follows settings live, with a single timer, and deactivation re
   try {
     plugin.activate();
     assert.equal(timers.filter(t => !t.cleared).length, 1);
-    inkdrop.config.set("inkdrop-git-sync.interval", 10);
+    inkdrop.config.set("git-sync.interval", 10);
     const live = timers.filter(t => !t.cleared);
     assert.equal(live.length, 1);
     assert.equal(live[0].ms, 10 * 60 * 1000);
@@ -243,7 +243,7 @@ test("points at the stray ~ directory left by autopush-notes 0.0.4 without movin
 
 test("a failed push followed by an agent edit of the same note becomes a conflict, not a stuck merge", async () => {
   const r = await remote();
-  const h = host({ config: settings(r.folder("sync"), { "inkdrop-git-sync.mode": "sync" }) });
+  const h = host({ config: settings(r.folder("sync"), { "git-sync.mode": "sync" }) });
   const plugin = freshPlugin();
   const syncId = stableSyncId("note:a");
   const original = GitService.prototype.commitAndPush;
