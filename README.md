@@ -1,14 +1,15 @@
-# Inkdrop Git Sync
+# Git Sync for Inkdrop
 
-Inkdrop Git Sync keeps Inkdrop notes and a private Git repository in step while Inkdrop is running. People and agents can work in a clone of the repository while the Mac is off; their committed changes reach Inkdrop on the next active cycle. Inkdrop's own cloud sync is unaffected.
+Git Sync keeps Inkdrop notes and a private Git repository in step while Inkdrop is running. People and agents can work in a clone of the repository while the Mac is off; their committed changes reach Inkdrop on the next active cycle. Inkdrop's own cloud sync is unaffected.
 
 ## Why the new name
 
-This plugin used to be called **autopush-notes**. That name described what it did then: export notes and push them to GitHub, one way, as a backup. It now keeps Inkdrop and a Git repository in step **in both directions**, so changes made in Git (by you or by an agent) come back into Inkdrop. "autopush" no longer described it, so it became **Inkdrop Git Sync**:
+This plugin used to be called **autopush-notes**. That name described what it did then: export notes and push them to GitHub, one way, as a backup. It now keeps Inkdrop and a Git repository in step **in both directions**, so changes made in Git (by you or by an agent) come back into Inkdrop. "autopush" no longer described it, so it became **Git Sync**. The Inkdrop plugin registry refuses names containing "inkdrop" (inside Inkdrop it goes without saying), hence `git-sync` rather than `inkdrop-git-sync`.
 
-- package: `inkdrop-git-sync` (replaces `autopush-notes`, which is no longer developed);
-- repository: [`dkp-consult/inkdrop-git-sync`](https://github.com/dkp-consult/inkdrop-git-sync), renamed from `dkp-consult/autopush-notes` with its full history (GitHub redirects the old URL);
-- commands: `inkdrop-git-sync:*` (the old `autopush-notes:*` commands remain as aliases).
+- package: `git-sync` (replaces `autopush-notes`, which is no longer developed);
+- repository: [`dkp-consult/git-sync`](https://github.com/dkp-consult/git-sync), renamed from `dkp-consult/autopush-notes` with its full history (GitHub redirects the old URL);
+- commands: `git-sync:*` (the old `autopush-notes:*` commands remain as aliases);
+- the local state folder inside the sync folder keeps its original name, `.inkdrop-git-sync/`.
 
 Coming from autopush-notes? Your settings are imported automatically; see [MIGRATION.md](MIGRATION.md).
 
@@ -34,11 +35,11 @@ Out of scope for now: attachments and images, rewriting `inkdrop://` links, auto
 ## Setup
 
 1. If `autopush-notes` is installed, uninstall it once its settings have been imported (see [MIGRATION.md](MIGRATION.md)).
-2. In **Preferences → Plugins → Inkdrop Git Sync**, set:
+2. In **Preferences → Plugins → Git Sync**, set:
    - the private repository (`owner/repository`), branch and GitHub token;
    - a **new, dedicated** sync folder (default `~/InkdropGitSync`);
    - optionally, the notebooks to include (names or IDs, comma-separated; sub-notebooks included).
-3. Set the mode to `sync`, then run **Plugins → Inkdrop Git Sync → Preview Without Writing**. It lists what a cycle would do against the remote branch, without creating or changing anything: not the folder, not the notes, not Inkdrop. The first synchronization of a folder is refused until a preview has run in the current Inkdrop session.
+3. Set the mode to `sync`, then run **Plugins → Git Sync → Preview Without Writing**. It lists what a cycle would do against the remote branch, without creating or changing anything: not the folder, not the notes, not Inkdrop. The first synchronization of a folder is refused until a preview has run in the current Inkdrop session.
 4. Run **Synchronize Now** once, check the result, then **Enable / Disable Schedule**. The default interval is 5 minutes; changes to the interval apply immediately.
 
 `export` mode remains for existing installations: one-way, Inkdrop to Git, same file format. Switching to `sync` later recognises every exported note.
@@ -51,12 +52,12 @@ Out of scope for now: attachments and images, rewriting `inkdrop://` links, auto
 
 | Command | Menu |
 |---|---|
-| `inkdrop-git-sync:syncNow` (`ctrl-alt-s`) | Synchronize Now |
-| `inkdrop-git-sync:preview` (`ctrl-alt-v`) | Preview Without Writing |
-| `inkdrop-git-sync:status` | Show Status: running cycle, last success, last error, open conflicts |
-| `inkdrop-git-sync:openConflicts` (`ctrl-alt-c`) | Open Conflicts |
-| `inkdrop-git-sync:openFolder` | Open Sync Folder |
-| `inkdrop-git-sync:toggle` | Enable / Disable Schedule |
+| `git-sync:syncNow` (`ctrl-alt-s`) | Synchronize Now |
+| `git-sync:preview` (`ctrl-alt-v`) | Preview Without Writing |
+| `git-sync:status` | Show Status: running cycle, last success, last error, open conflicts |
+| `git-sync:openConflicts` (`ctrl-alt-c`) | Open Conflicts |
+| `git-sync:openFolder` | Open Sync Folder |
+| `git-sync:toggle` | Enable / Disable Schedule |
 
 The legacy `autopush-notes:*` commands remain as aliases while the old package is inactive.
 

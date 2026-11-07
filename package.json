@@ -1,6 +1,6 @@
 {
-  "name": "inkdrop-git-sync",
-  "main": "./lib/inkdrop-git-sync",
+  "name": "git-sync",
+  "main": "./lib/git-sync",
   "version": "0.1.0",
   "description": "Bidirectional synchronization between Inkdrop notes and a Git repository",
   "keywords": [
@@ -21,12 +21,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dkp-consult/inkdrop-git-sync.git"
+    "url": "https://github.com/dkp-consult/git-sync.git"
   },
   "license": "MIT",
   "scripts": {
     "test": "node --test",
-    "check": "node --check lib/inkdrop-git-sync.js && node --check lib/sync-engine.js && node --check lib/git-service.js && node --check lib/inkdrop-adapter.js"
+    "check": "node --check lib/git-sync.js && node --check lib/sync-engine.js && node --check lib/git-service.js && node --check lib/inkdrop-adapter.js"
   },
   "configSchema": {
     "enabled": {

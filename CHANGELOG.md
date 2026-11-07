@@ -1,5 +1,5 @@
-## 0.1.0 - Inkdrop Git Sync
-* Renamed the package to `inkdrop-git-sync`. Old preferences are imported once, legacy commands remain as aliases, and the plugin refuses to run while `autopush-notes` is active
+## 0.1.0 - Git Sync
+* Renamed the package to `git-sync` (the registry refuses names containing "inkdrop") and the repository to `dkp-consult/git-sync`. Old preferences are imported once, legacy commands remain as aliases, and the plugin refuses to run while `autopush-notes` is active
 * Added opt-in two-way sync: stable file names, versioned front matter with notebook paths and tag names, three-way comparison, conflict copies resolved by keeping one, and deletions reported but never propagated
 * Added deterministic IDs in both directions, so a second Mac, a reinstall or an interrupted import never duplicates notes, and export mode and sync mode share files. Files from Inkdrop carry `inkdrop_id`, so a trashed or not yet downloaded note is never re-imported
 * Imported notes follow Inkdrop's note schema. Missing notebooks and tags are created

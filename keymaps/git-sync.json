@@ -1,0 +1,7 @@
+{
+  "body": {
+    "ctrl-alt-s": "git-sync:syncNow",
+    "ctrl-alt-v": "git-sync:preview",
+    "ctrl-alt-c": "git-sync:openConflicts"
+  }
+}
