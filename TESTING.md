@@ -8,6 +8,20 @@ npm run check
 
 The automated suite covers the engine, the Git service against local bare repositories, the Inkdrop adapter against a database that applies Inkdrop 6.3's note, notebook and tag schemas, and the plugin end to end. It does not replace a run inside Inkdrop.
 
+## Isolated Inkdrop for testing
+
+Inkdrop can run a second, local-only instance that never touches your account or your notes: a demo account, a separate data directory, no cloud sync.
+
+```sh
+DIR=$(mktemp -d)
+mkdir -p "$DIR/userdata/packages"
+ln -s "$PWD" "$DIR/userdata/packages/inkdrop-git-sync"
+INKDROP_TEST_MODE=1 INKDROP_USER_DATA_PATH="$DIR/userdata" INKDROP_HOME="$DIR/home" \
+  /Applications/Inkdrop.app/Contents/MacOS/Inkdrop --remote-debugging-port=9333
+```
+
+Point the sync folder inside `$DIR`. Do not call the guest-login IPC: the instance is already logged in as the demo account, and logging in again unloads its database. Quitting it and deleting `$DIR` removes everything.
+
 ## Manual checks in Inkdrop before release
 
 Use a **copy** of your notes (a separate Inkdrop account or data directory) and a disposable private GitHub repository. Keep `autopush-notes` disabled.

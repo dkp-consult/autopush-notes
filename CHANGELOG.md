@@ -7,6 +7,8 @@
 * Fixed: every note is read, not just the first 100 (#5); only managed files are written and none are deleted (#7, #12); `~` is expanded and the stray folder left by older versions is reported (#8); the first push no longer fails on `master`/`main` (#9); Git runs without a shell (#10); errors are shown in Inkdrop (#11, #1); the interval applies without restart (#14); the token is no longer stored in `.git/config` (#6)
 * Git: an interrupted cycle resumes, a remote that moved is merged and the push retried, common versions are recorded only after a successful push, credential helpers are bypassed so the token never reaches the keychain, unrelated histories stop with a clear message, and nothing is force-pushed or reset
 * A note deleted on both sides is forgotten; an edited conflict copy is archived, never overwritten
+* Inkdrop 6 API, checked in a running Inkdrop 6.3.0: the database is read from `inkdrop.localDB` (the plugin crashed on every cycle), pages are read from `rows[].doc` (the plugin saw no notes), and notifications use `addInfo`/`addWarning`/`addError`
+* A note changed from Git is dated at import, so it rises in "Date Updated"
 * `engines.inkdrop` narrowed to `>=6.0.0 <7`, the versions the data schema was verified against
 
 ## 0.0.4 - Inkdrop 6 Compatibility
