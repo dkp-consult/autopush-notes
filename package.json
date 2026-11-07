@@ -1,8 +1,8 @@
 {
   "name": "autopush-notes",
   "main": "./lib/autopush-notes",
-  "version": "0.0.4",
-  "description": "An Inkdrop plugin to export and back up notes to GitHub",
+  "version": "0.0.5",
+  "description": "Deprecated: replaced by git-sync (ipm install git-sync)",
   "keywords": [
     "inkdrop",
     "backup",

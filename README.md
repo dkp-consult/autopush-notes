@@ -1,5 +1,13 @@
 # autopush-notes
 
+> **Deprecated.** autopush-notes is no longer maintained and does not work with Inkdrop 6. It is replaced by **[git-sync](https://my.inkdrop.app/plugins/git-sync)**, a two-way sync between Inkdrop and a Git repository that imports your autopush-notes settings on first start.
+>
+> 1. `ipm install git-sync`
+> 2. Start Inkdrop once, so git-sync imports your settings, then quit it.
+> 3. `ipm uninstall autopush-notes`
+>
+> Details: [MIGRATION.md](https://github.com/dkp-consult/git-sync/blob/main/MIGRATION.md).
+
 ## English
 
 An Inkdrop plugin to export your notes locally in Markdown (.md) format and automatically save them in a GitHub repository.

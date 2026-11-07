@@ -1,3 +1,6 @@
+## 0.0.5 - Deprecated
+* autopush-notes is replaced by `git-sync`. A notification on start points to it; the README explains the move
+
 ## 0.0.4 - Inkdrop 6 Compatibility
 * Fixed: `engines.inkdrop` widened to `>=5.3.1 <7` — the plugin could not be installed on Inkdrop 6, and Inkdrop 5 remains supported
 * Fixed: `repository.type` set to `git` with the `.git` suffix in the URL
